@@ -201,7 +201,7 @@ body {
     background-color: rgba(128, 128, 128, 0.197);
 }
 
-input[type="password"] {
+input[type="password"], input[type="text"] {
     background-color: var(--bg-color);
     color: var(--fg-color);
 
@@ -214,7 +214,7 @@ input[type="password"] {
     transition: border-bottom 0.5s var(--standard-anim);
 }
 
-input[type="password"]:focus {
+input[type="password"]:focus, input[type="text"]:focus {
     border-bottom: 2px solid var(--theme-1);
     outline: none;
 }
