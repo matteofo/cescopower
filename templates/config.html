@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cescopower</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {{ meta|safe }}
+</head>
+<body>
+    <a id="top-button" href="./">
+        <img src="{{ url_for('static', filename='img/close.svg') }}">
+    </a>
+    <h1>Configurazione</h1>
+    <form action="./setconf" method="POST">
+        <label for="ip">Indirizzo IP</label><br>
+        <input type="text" name="ip" placeholder="{{ ip }}" value="{{ ip }}"><br>
+
+        <label for="mac">Indirizzo MAC</label><br>
+        <input type="text" name="mac" placeholder="{{ mac }}" value="{{ mac }}"><br>
+
+        <div class="centered">
+            <input type="submit" value="Aggiorna">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cescopower</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {{ meta|safe }}
+</head>
+<body>
+    <a id="top-button" href="./config">
+        <img src="{{ url_for('static', filename='img/settings.svg') }}">
+    </a>
+    <a href="./wake" status="{{ status }}" id="power-button">
+        <img id="power-button-icon" src="{{ url_for('static', filename='img/power.svg') }}">
+    </a>
+    <p id="bottom-text">Lo stato si aggiorna ogni 5 secondi.</p>
+    {{ notif|safe }}
+</body>
+</html>

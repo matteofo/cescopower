@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --bg-color: rgb(29, 29, 29);
+    --bg-2-color: rgb(45, 45, 45);
+    --fg-color: white;
+    --theme-1: #41a972;
+    --theme-2: #358a5d;
+    --theme-3: #266544;
+
+    --red-1: #a94141;
+    --red-2: #8a3535;
+    --red-3: #652626;
+
+    --button-width: 300px;
+    --button-height: 300px;
+
+    --notif-right: 10px;
+    --notif-top: 10px;
+    --notif-width: 300px;
+    --notif-height: 100px;
+
+    --top-button-size: 50px;
+    --top-button-margin: 10px;
+
+    --standard-shadow: 0px 5px 20px 2px rgba(0,0,0,0.5);
+    --standard-anim: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media only screen and (max-width: 600px) {
+    :root {
+        --button-width: 90vw;
+        --button-height: 90vw;
+
+        --notif-width: 90vw;
+    }
+}
+
+* {
+    font-family: Roboto;
+    color: var(--fg-color);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--bg-color);
+
+    height: 100vh;
+    width: 100vw;
+}
+
+#power-button {
+    background-color: var(--theme-1);
+    border: none;
+
+    width: var(--button-width);
+    height: var(--button-height);
+
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s var(--standard-anim);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: var(--standard-shadow);
+}
+
+#power-button:hover {
+    background-color: var(--theme-2);
+}
+
+#power-button:active {
+    background-color: var(--theme-3);
+}
+
+#power-button[status="False"] {
+    background-color: var(--red-1);
+}
+
+#power-button:hover[status="False"] {
+    background-color: var(--red-2);
+}
+
+#power-button:active[status="False"] {
+    background-color: var(--red-3);
+}
+
+#power-button-icon {
+    width: calc(var(--button-width) / 2);
+    height: calc(var(--button-height) / 2);
+
+    color: white;
+}
+
+#notification {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: fixed;
+    top: var(--notif-top);
+    right: calc(-20px - var(--notif-width));
+
+    width: var(--notif-width);
+    height: var(--notif-height);
+
+    background-color: var(--bg-2-color);
+    border-radius: 5px;
+    line-height: 1px;
+
+    padding-left: 10px;
+
+    cursor: help;
+    animation: notif-appear 3s ease-in-out;
+
+    box-shadow: var(--standard-shadow);
+}
+
+@keyframes notif-appear {
+    0% {
+        right: calc(-20px - var(--notif-width));
+    }
+
+    15% {
+        right: var(--notif-right);
+    }
+
+    85% {
+        right: var(--notif-right);
+    }
+
+    100% {
+        right: calc(-20px - var(--notif-width));
+    }
+}
+
+#top-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 100%;
+
+    width: var(--top-button-size);
+    height: var(--top-button-size);
+
+    position: fixed;
+    top: var(--top-button-margin);
+    left: var(--top-button-margin);
+
+    transition: background-color 0.2s var(--standard-anim);
+    
+    cursor: pointer;
+}
+
+#top-button:hover {
+    background-color: rgba(128, 128, 128, 0.197);
+}
+
+input[type="text"] {
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid gray;
+
+    margin-bottom: 10px;
+
+    transition: border-bottom 0.5s var(--standard-anim);
+}
+
+input[type="text"]:focus {
+    border-bottom: 1px solid var(--theme-1);
+}
+
+input[type="submit"] {
+    text-transform: uppercase;
+
+    background-color: #41a972;
+    padding: 10px;
+
+    border: none;
+    border-radius: 3px;
+
+    cursor: pointer;
+    
+    text-align: center;
+    box-shadow: var(--standard-shadow);
+
+    transition: background-color 0.5s var(--standard-anim);
+}
+
+input[type="submit"]:hover {
+    background-color: var(--theme-2);
+}
+
+input[type="submit"]:active {
+    background-color: var(--theme-3);
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bottom-text {
+    position: fixed;
+    bottom: 0;
+    left: 5px;
+
+    line-height: 0;
+
+    color: gray;
+    font-style: italic;
+}
