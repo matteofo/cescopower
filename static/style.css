@@ -127,7 +127,7 @@ body {
     padding-left: 10px;
     gap: 5px;
 
-    cursor: help;
+    cursor: wait;
     animation: notif-appear 3s ease-in-out;
 
     box-shadow: var(--standard-shadow);
@@ -207,7 +207,7 @@ input[type="text"] {
 
     padding: 10px;
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid gray;
 
     margin-bottom: 10px;
 
@@ -215,7 +215,8 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-bottom: 1px solid var(--theme-1);
+    border-bottom: 2px solid var(--theme-1);
+    outline: none;
 }
 
 input[type="submit"] {
@@ -258,4 +259,12 @@ input[type="submit"]:active {
 
     color: gray;
     font-style: italic;
+}
+
+form {
+    padding: 10px;
+}
+
+label {
+    font-weight: bold;
 }
