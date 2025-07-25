@@ -11,6 +11,9 @@
     <a id="top-button" href="./">
         <img src="{{ url_for('static', filename='img/close.svg') }}">
     </a>
+    <a id="top-right-button" href="./logout">
+        <img src="{{ url_for('static', filename='img/logout.svg') }}">
+    </a>
     <h1>Configurazione</h1>
     <form action="./setconf" method="POST">
         <label for="ip">Indirizzo IP</label><br>

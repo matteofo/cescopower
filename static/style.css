@@ -41,6 +41,11 @@
     color: var(--fg-color);
 }
 
+h1 {
+    font-size: x-large;
+    margin: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -118,14 +123,18 @@ body {
 
     background-color: var(--bg-2-color);
     border-radius: 5px;
-    line-height: 1px;
 
     padding-left: 10px;
+    gap: 5px;
 
     cursor: help;
     animation: notif-appear 3s ease-in-out;
 
     box-shadow: var(--standard-shadow);
+}
+
+#notification > p {
+    margin: 0;
 }
 
 @keyframes notif-appear {
@@ -166,6 +175,29 @@ body {
 }
 
 #top-button:hover {
+    background-color: rgba(128, 128, 128, 0.197);
+}
+
+#top-right-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 100%;
+
+    width: var(--top-button-size);
+    height: var(--top-button-size);
+
+    position: fixed;
+    top: var(--top-button-margin);
+    right: var(--top-button-margin);
+
+    transition: background-color 0.2s var(--standard-anim);
+    
+    cursor: pointer;
+}
+
+#top-right-button:hover {
     background-color: rgba(128, 128, 128, 0.197);
 }
 

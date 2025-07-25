@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cescopower</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {{ meta|safe }}
+</head>
+<body>
+    <h1>Accedi</h1>
+    <form action="./login" method="POST">
+        <label for="pass">Password</label><br>
+        <input type="text" name="pass" placeholder="Inserisci la password..."><br>
+
+        <div class="centered">
+            <input type="submit" value="Accedi">
+        </div>
+        {{ notif|safe }}
+    </form>
+</body>
+</html>
