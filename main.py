@@ -31,7 +31,7 @@ def login():
         resp.set_cookie("cescopower-auth", pass_hash)
         return resp
     else:
-        notif = dom.notification("Password errata!", "Riprova")
+        notif = dom.notification("Password errata!")
         return render_template("auth.html", notif=notif.html())
     
 @app.route("/logout")
@@ -72,10 +72,10 @@ def wake():
 
     meta = dom.refresh(3, "./")
     wake = try_wake(config)
-    notif = dom.notification("WOL inviato!", "Nessun errore.")
+    notif = dom.notification("WOL inviato!")
 
     if wake != 0:
-        notif = dom.notification("Errore nel WOL!", f"Codice uscita {wake}.")
+        notif = dom.notification(f"Errore {wake} nel WOL!")
 
     status = get_powerstatus(config)
 
@@ -103,7 +103,7 @@ def setconf():
 
     meta = dom.refresh(5, "./")
     status = get_powerstatus(config)
-    notif = dom.notification("Config. aggiornata!", f"IP: {config.ip_addr}<br>MAC: {config.mac_addr}")
+    notif = dom.notification("Config. aggiornata!")
 
     return render_template("index.html", meta=meta.html(), status=status, notif=notif.html())
 

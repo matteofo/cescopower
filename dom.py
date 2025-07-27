@@ -39,17 +39,13 @@ class Element:
 
         return res
 
-def notification(title, subtitle):
+def notification(title):
     notif = Element("div")
     notif.attributes["id"] = "notification"
 
-    title_elem = Element("h1")
+    title_elem = Element("p")
     title_elem.content = title
     notif.add_child(title_elem)
-
-    subtitle_elem = Element("p")
-    subtitle_elem.content = subtitle
-    notif.add_child(subtitle_elem)
 
     return notif
 

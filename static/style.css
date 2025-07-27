@@ -16,9 +16,9 @@
     --button-height: 300px;
 
     --notif-right: 10px;
-    --notif-top: 10px;
-    --notif-width: 300px;
-    --notif-height: 100px;
+    --notif-bottom: 75px;
+    --notif-width: 200px;
+    --notif-height: 45px;
 
     --top-button-size: 50px;
     --top-button-margin: 10px;
@@ -31,8 +31,6 @@
     :root {
         --button-width: 90vw;
         --button-height: 90vw;
-
-        --notif-width: 90vw;
     }
 }
 
@@ -113,24 +111,23 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     position: fixed;
-    top: var(--notif-top);
-    right: calc(-20px - var(--notif-width));
+    bottom: var(--notif-bottom);
 
     width: var(--notif-width);
     height: var(--notif-height);
 
     background-color: var(--bg-2-color);
-    border-radius: 5px;
+    border-radius: 50px;
 
-    padding-left: 10px;
     gap: 5px;
 
     cursor: wait;
     animation: notif-appear 3s ease-in-out;
 
-    box-shadow: var(--standard-shadow);
+    opacity: 0%;
 }
 
 #notification > p {
@@ -139,19 +136,19 @@ body {
 
 @keyframes notif-appear {
     0% {
-        right: calc(-20px - var(--notif-width));
+        opacity: 0%;
     }
 
-    15% {
-        right: var(--notif-right);
+    25% {
+        opacity: 100%;
     }
 
-    85% {
-        right: var(--notif-right);
+    75% {
+        opacity: 100%;
     }
 
     100% {
-        right: calc(-20px - var(--notif-width));
+        opacity: 0%;
     }
 }
 
