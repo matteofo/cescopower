@@ -7,7 +7,7 @@ Type=simple
 Restart=on-failure
 RestartSec=1
 RemainAfterExit=yes
-ExecStart=python3 /opt/cescopower/main.py
+ExecStart=/opt/cescopower/run-serv.sh
 
 [Install]
 WantedBy=multi-user.target
