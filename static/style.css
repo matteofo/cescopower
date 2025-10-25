@@ -4,6 +4,7 @@
     --bg-color: rgb(29, 29, 29);
     --bg-2-color: rgb(45, 45, 45);
     --fg-color: white;
+    --fg-2-color: rgb(125, 125, 125);
     --theme-1: #41a972;
     --theme-2: #358a5d;
     --theme-3: #266544;
@@ -264,4 +265,44 @@ form {
 
 label {
     font-weight: bold;
+}
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: var(--bg-color);
+
+    user-select: none;
+    
+    font: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid var(--fg-2-color);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    cursor: pointer;
+
+    background-color: var(--bg-color);
+
+    transition: ease-in-out 0.25s all;
+}
+
+input[type="checkbox"]:checked {
+    border: 0.15em solid var(--theme-2);
+    background-color: var(--theme-2);
+}
+
+input[type="checkbox"]:checked::after {
+    display: block;
+    margin: 0;
+    
+    height: 90%;
+    width: 110%;
+    background-color: white;
+    transform-origin: bottom center;
+    content: 'a';
+    mask-image: url("/static/img/check.svg");
 }

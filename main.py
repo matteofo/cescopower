@@ -1,7 +1,6 @@
 from flask import *
 from wol import *
-import cesconfig, json, dom
-import hashlib
+import cesconfig, json, dom, hashlib, socket
 
 app = Flask(__name__)
 
@@ -71,11 +70,11 @@ def wake():
     config = cesconfig.load_config()
 
     meta = dom.refresh(3, "./")
-    wake = try_wake(config)
+    wake = wake_auto(config)
     notif = dom.notification("WOL inviato!")
 
-    if wake != 0:
-        notif = dom.notification(f"Errore {wake} nel WOL!")
+    if not wake:
+        notif = dom.notification(f"Errore nel WOL!")
 
     status = get_powerstatus(config)
 
@@ -87,8 +86,9 @@ def config():
         return redirect(url_for("auth"))
     
     config = cesconfig.load_config()
+    checked = "checked" if config.satellite else ""
 
-    return render_template("config.html", ip=config.ip_addr, mac=config.mac_addr)
+    return render_template("config.html", ip=config.ip_addr, mac=config.mac_addr, sat_checked=checked)
 
 @app.route("/setconf", methods=['POST'])
 def setconf():
@@ -98,7 +98,14 @@ def setconf():
     ip = request.form["ip"]
     mac = request.form["mac"]
 
-    config = Config(ip, mac, cesconfig.load_config().password)
+    print("satellite" not in request.form)
+
+    if "satellite" not in request.form:
+        satellite = False
+    else:
+        satellite = True if request.form["satellite"] == "on" else False
+
+    config = Config(ip, mac, cesconfig.load_config().password, satellite)
     cesconfig.write_config(config)
 
     meta = dom.refresh(5, "./")
@@ -109,4 +116,7 @@ def setconf():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 6969, True)
+    if socket.gethostname() == "cescopower":
+        app.run('0.0.0.0', 80, True)
+    else:
+        app.run('0.0.0.0', 6969, True)

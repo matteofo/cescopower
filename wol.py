@@ -1,5 +1,5 @@
 from cesconfig import Config
-import subprocess
+import subprocess, requests
 
 def get_powerstatus(cfg: Config):
     proc = subprocess.Popen(
@@ -19,7 +19,7 @@ def get_powerstatus(cfg: Config):
 
     return proc.returncode == 0
 
-def try_wake(cfg: Config):
+def wake_wol(cfg: Config):
     proc = subprocess.Popen(
         ["wakeonlan", "-i", cfg.ip_addr, cfg.mac_addr],
         stdout=subprocess.PIPE,
@@ -30,3 +30,16 @@ def try_wake(cfg: Config):
 
     proc.communicate()
     return proc.returncode
+
+def wake_satellite(cfg: Config):
+    try:
+        r = requests.get("http://" + cfg.ip_addr + "/power")
+        return r.status_code
+    except:
+        return 0
+
+def wake_auto(cfg: Config):
+    if cfg.satellite:
+        return wake_satellite(cfg) == 200
+    else:
+        return wake_wol(cfg) == 0
